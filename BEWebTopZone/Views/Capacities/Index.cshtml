@@ -1,0 +1,35 @@
+﻿@model IEnumerable<BEWebTopZone.Models.Capacity>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DUNG LUONG</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            TÊN DUNG LƯỢNG
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CapacityName)
+        </td>
+        <td>
+            @Html.ActionLink("SỬA", "Edit", new { id=item.CapacityID }) |
+            @Html.ActionLink("CHI TIẾT", "Details", new { id=item.CapacityID }) |
+            @Html.ActionLink("XÓA", "Delete", new { id=item.CapacityID })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-primary" })
+</p>

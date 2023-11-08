@@ -1,0 +1,50 @@
+﻿@model BEWebTopZone.Models.Discount
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CHI TIẾT MÃ GIẢM GIÁ</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           MÃ GIẢM GIÁ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiscountCode)
+        </dd>
+
+        <dt>
+         SỐ TIỀN GIẢM GIÁ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiscountAmount)
+        </dd>
+
+        <dt>
+            NGÀY MỞ MÃ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+           NGÀY KẾT THÚC MÃ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.DiscountID }) |
+    @Html.ActionLink("Danh sách", "Index", null, new { @class = "btn btn-info" })
+</p>

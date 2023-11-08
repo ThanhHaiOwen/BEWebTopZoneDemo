@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BEWebTopZone.Models.Discount>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DANH SÁCH MÃ GIẢM GIÁ</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            MÃ GIẢM GIÁ
+        </th>
+        <th>
+            SỐ TIỀN GIẢM GIÁ
+        </th>
+        <th>
+            NGÀY MỞ MÃ
+        </th>
+        <th>
+            NGÀY KẾT THÚC MÃ
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiscountCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiscountAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.DiscountID }) |
+                @Html.ActionLink("Chi Tiết", "Details", new { id = item.DiscountID }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.DiscountID })
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-primary" })
+</p>
+

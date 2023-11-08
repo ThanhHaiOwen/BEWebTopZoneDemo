@@ -1,0 +1,26 @@
+﻿@model BEWebTopZone.Models.Capacity
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CHI TIÊT DUNG LƯỢNG</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            TÊN DUNG LƯỢNG
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CapacityName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Danh sách", "Index", null, new { @class = "btn btn-info" })
+</p>

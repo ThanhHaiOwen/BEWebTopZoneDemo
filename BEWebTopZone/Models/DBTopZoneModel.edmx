@@ -1,0 +1,862 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBTopZoneModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AminUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NameUser" Type="nvarchar(max)" />
+          <Property Name="RoleUser" Type="nvarchar(max)" />
+          <Property Name="PasswordUser" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Capacity">
+          <Key>
+            <PropertyRef Name="CapacityID" />
+          </Key>
+          <Property Name="CapacityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CapacityName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CatID" />
+          </Key>
+          <Property Name="CatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameCate" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="ColorID" />
+          </Key>
+          <Property Name="ColorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ColorName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RGB" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CusPhone" />
+          </Key>
+          <Property Name="CusPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="CusPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CusFirstName" Type="nvarchar(max)" />
+          <Property Name="CusLastName" Type="nvarchar(max)" />
+          <Property Name="CusSex" Type="nvarchar" MaxLength="10" />
+          <Property Name="CusDate" Type="datetime" />
+          <Property Name="CusEmail" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="DiscountID" />
+          </Key>
+          <Property Name="DiscountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscountCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DiscountAmount" Type="float" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderDate" Type="date" />
+          <Property Name="CusPhone" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="AddressDeliverry" Type="nvarchar(max)" />
+          <Property Name="OrderStatus" Type="nvarchar(max)" />
+          <Property Name="TotalValue" Type="float" />
+          <Property Name="ReviewID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProSupID" Type="int" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="UnitPrice" Type="float" />
+        </EntityType>
+        <EntityType Name="Pictures">
+          <Key>
+            <PropertyRef Name="PictureID" />
+          </Key>
+          <Property Name="PictureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProID" Type="int" Nullable="false" />
+          <Property Name="PictureName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PictureDescription" Type="nvarchar(max)" />
+          <Property Name="PictureData" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="ProDetail">
+          <Key>
+            <PropertyRef Name="ProDeID" />
+          </Key>
+          <Property Name="ProDeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProID" Type="int" Nullable="false" />
+          <Property Name="ColorID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="DiscountID" Type="int" />
+          <Property Name="CapacityID" Type="int" />
+          <Property Name="RemainQuantity" Type="int" Nullable="false" />
+          <Property Name="SoldQuantity" Type="int" />
+          <Property Name="ViewQuantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProName" Type="nvarchar(max)" />
+          <Property Name="CatID" Type="int" Nullable="false" />
+          <Property Name="ProImage" Type="nvarchar(max)" />
+          <Property Name="NameDecription" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Review_ID" />
+          </Key>
+          <Property Name="Review_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProID" Type="int" Nullable="false" />
+          <Property Name="CusPhone" Type="nvarchar" MaxLength="15" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK__Order__CusPhone__47DBAE45">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CusPhone" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CusPhone" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__4BAC3F29">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__ProSu__4AB81AF0">
+          <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProDetail">
+              <PropertyRef Name="ProDeID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="ProSupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pictures__ProID__52593CB8">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Pictures" Type="Self.Pictures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProID" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="ProID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProDetail__Color__412EB0B6">
+          <End Role="Color" Type="Self.Color" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="ColorID" />
+            </Principal>
+            <Dependent Role="ProDetail">
+              <PropertyRef Name="ColorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProDetail__ProID__403A8C7D">
+          <End Role="Product" Type="Self.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProID" />
+            </Principal>
+            <Dependent Role="ProDetail">
+              <PropertyRef Name="ProID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Review__CusPhone__4F7CD00D">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CusPhone" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="CusPhone" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Review">
+          <End Role="Review" Type="Self.Review" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Review">
+              <PropertyRef Name="Review_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ReviewID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pro_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CatID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProDetail_Capacity">
+          <End Role="Capacity" Type="Self.Capacity" Multiplicity="0..1" />
+          <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Capacity">
+              <PropertyRef Name="CapacityID" />
+            </Principal>
+            <Dependent Role="ProDetail">
+              <PropertyRef Name="CapacityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProDetail_Discount">
+          <End Role="Discount" Type="Self.Discount" Multiplicity="0..1" />
+          <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="DiscountID" />
+            </Principal>
+            <Dependent Role="ProDetail">
+              <PropertyRef Name="DiscountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PK_REVIEW_PRO">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="ProID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBTopZoneModelStoreContainer">
+          <EntitySet Name="AminUser" EntityType="Self.AminUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Capacity" EntityType="Self.Capacity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discount" EntityType="Self.Discount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pictures" EntityType="Self.Pictures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProDetail" EntityType="Self.ProDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Order__CusPhone__47DBAE45" Association="Self.FK__Order__CusPhone__47DBAE45">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__4BAC3F29" Association="Self.FK__OrderDeta__Order__4BAC3F29">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__ProSu__4AB81AF0" Association="Self.FK__OrderDeta__ProSu__4AB81AF0">
+            <End Role="ProDetail" EntitySet="ProDetail" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pictures__ProID__52593CB8" Association="Self.FK__Pictures__ProID__52593CB8">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProDetail__Color__412EB0B6" Association="Self.FK__ProDetail__Color__412EB0B6">
+            <End Role="Color" EntitySet="Color" />
+            <End Role="ProDetail" EntitySet="ProDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProDetail__ProID__403A8C7D" Association="Self.FK__ProDetail__ProID__403A8C7D">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProDetail" EntitySet="ProDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Review__CusPhone__4F7CD00D" Association="Self.FK__Review__CusPhone__4F7CD00D">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Review" Association="Self.FK_Order_Review">
+            <End Role="Review" EntitySet="Review" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pro_Category" Association="Self.FK_Pro_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProDetail_Capacity" Association="Self.FK_ProDetail_Capacity">
+            <End Role="Capacity" EntitySet="Capacity" />
+            <End Role="ProDetail" EntitySet="ProDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProDetail_Discount" Association="Self.FK_ProDetail_Discount">
+            <End Role="Discount" EntitySet="Discount" />
+            <End Role="ProDetail" EntitySet="ProDetail" />
+          </AssociationSet>
+          <AssociationSet Name="PK_REVIEW_PRO" Association="Self.PK_REVIEW_PRO">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBTopZoneModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AminUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NameUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RoleUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordUser" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Capacity">
+          <Key>
+            <PropertyRef Name="CapacityID" />
+          </Key>
+          <Property Name="CapacityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CapacityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProDetails" Relationship="Self.FK_ProDetail_Capacity" FromRole="Capacity" ToRole="ProDetail" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CatID" />
+          </Key>
+          <Property Name="CatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameCate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Pro_Category" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="ColorID" />
+          </Key>
+          <Property Name="ColorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ColorName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RGB" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProDetails" Relationship="Self.FK__ProDetail__Color__412EB0B6" FromRole="Color" ToRole="ProDetail" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CusPhone" />
+          </Key>
+          <Property Name="CusPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CusPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CusFirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CusLastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CusSex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CusDate" Type="DateTime" Precision="3" />
+          <Property Name="CusEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Order__CusPhone__47DBAE45" FromRole="Customer" ToRole="Order" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK__Review__CusPhone__4F7CD00D" FromRole="Customer" ToRole="Review" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="DiscountID" />
+          </Key>
+          <Property Name="DiscountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DiscountAmount" Type="Double" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="ProDetails" Relationship="Self.FK_ProDetail_Discount" FromRole="Discount" ToRole="ProDetail" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderDate" Type="DateTime" Precision="0" />
+          <Property Name="CusPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressDeliverry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OrderStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TotalValue" Type="Double" />
+          <Property Name="ReviewID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Order__CusPhone__47DBAE45" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Order__4BAC3F29" FromRole="Order" ToRole="OrderDetail" />
+          <NavigationProperty Name="Review" Relationship="Self.FK_Order_Review" FromRole="Order" ToRole="Review" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProSupID" Type="Int32" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="UnitPrice" Type="Double" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__OrderDeta__Order__4BAC3F29" FromRole="OrderDetail" ToRole="Order" />
+          <NavigationProperty Name="ProDetail" Relationship="Self.FK__OrderDeta__ProSu__4AB81AF0" FromRole="OrderDetail" ToRole="ProDetail" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="PictureID" />
+          </Key>
+          <Property Name="PictureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProID" Type="Int32" Nullable="false" />
+          <Property Name="PictureName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PictureDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PictureData" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Pictures__ProID__52593CB8" FromRole="Pictures" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProDetail">
+          <Key>
+            <PropertyRef Name="ProDeID" />
+          </Key>
+          <Property Name="ProDeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProID" Type="Int32" Nullable="false" />
+          <Property Name="ColorID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="DiscountID" Type="Int32" />
+          <Property Name="CapacityID" Type="Int32" />
+          <Property Name="RemainQuantity" Type="Int32" Nullable="false" />
+          <Property Name="SoldQuantity" Type="Int32" />
+          <Property Name="ViewQuantity" Type="Int32" />
+          <NavigationProperty Name="Capacity" Relationship="Self.FK_ProDetail_Capacity" FromRole="ProDetail" ToRole="Capacity" />
+          <NavigationProperty Name="Color" Relationship="Self.FK__ProDetail__Color__412EB0B6" FromRole="ProDetail" ToRole="Color" />
+          <NavigationProperty Name="Discount" Relationship="Self.FK_ProDetail_Discount" FromRole="ProDetail" ToRole="Discount" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__ProSu__4AB81AF0" FromRole="ProDetail" ToRole="OrderDetail" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ProDetail__ProID__403A8C7D" FromRole="ProDetail" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CatID" Type="Int32" Nullable="false" />
+          <Property Name="ProImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NameDecription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Pro_Category" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="Pictures" Relationship="Self.FK__Pictures__ProID__52593CB8" FromRole="Product" ToRole="Pictures" />
+          <NavigationProperty Name="ProDetails" Relationship="Self.FK__ProDetail__ProID__403A8C7D" FromRole="Product" ToRole="ProDetail" />
+          <NavigationProperty Name="Reviews" Relationship="Self.PK_REVIEW_PRO" FromRole="Product" ToRole="Review" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Review_ID" />
+          </Key>
+          <Property Name="Review_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProID" Type="Int32" Nullable="false" />
+          <Property Name="CusPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Review__CusPhone__4F7CD00D" FromRole="Review" ToRole="Customer" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Review" FromRole="Review" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="Self.PK_REVIEW_PRO" FromRole="Review" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_ProDetail_Capacity">
+          <End Role="Capacity" Type="Self.Capacity" Multiplicity="0..1" />
+          <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Capacity">
+              <PropertyRef Name="CapacityID" />
+            </Principal>
+            <Dependent Role="ProDetail">
+              <PropertyRef Name="CapacityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pro_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CatID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProDetail__Color__412EB0B6">
+          <End Role="Color" Type="Self.Color" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="ColorID" />
+            </Principal>
+            <Dependent Role="ProDetail">
+              <PropertyRef Name="ColorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Order__CusPhone__47DBAE45">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CusPhone" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CusPhone" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Review__CusPhone__4F7CD00D">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CusPhone" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="CusPhone" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProDetail_Discount">
+          <End Role="Discount" Type="Self.Discount" Multiplicity="0..1" />
+          <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="DiscountID" />
+            </Principal>
+            <Dependent Role="ProDetail">
+              <PropertyRef Name="DiscountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__4BAC3F29">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Review">
+          <End Role="Review" Type="Self.Review" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Review">
+              <PropertyRef Name="Review_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ReviewID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__ProSu__4AB81AF0">
+          <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProDetail">
+              <PropertyRef Name="ProDeID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="ProSupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pictures__ProID__52593CB8">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Pictures" Type="Self.Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProID" />
+            </Principal>
+            <Dependent Role="Pictures">
+              <PropertyRef Name="ProID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProDetail__ProID__403A8C7D">
+          <End Role="Product" Type="Self.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProDetail" Type="Self.ProDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProID" />
+            </Principal>
+            <Dependent Role="ProDetail">
+              <PropertyRef Name="ProID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PK_REVIEW_PRO">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="ProID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBTopZoneEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AminUsers" EntityType="Self.AminUser" />
+          <EntitySet Name="Capacities" EntityType="Self.Capacity" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Colors" EntityType="Self.Color" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Discounts" EntityType="Self.Discount" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="Pictures" EntityType="Self.Picture" />
+          <EntitySet Name="ProDetails" EntityType="Self.ProDetail" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Reviews" EntityType="Self.Review" />
+          <AssociationSet Name="FK_ProDetail_Capacity" Association="Self.FK_ProDetail_Capacity">
+            <End Role="Capacity" EntitySet="Capacities" />
+            <End Role="ProDetail" EntitySet="ProDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pro_Category" Association="Self.FK_Pro_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProDetail__Color__412EB0B6" Association="Self.FK__ProDetail__Color__412EB0B6">
+            <End Role="Color" EntitySet="Colors" />
+            <End Role="ProDetail" EntitySet="ProDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Order__CusPhone__47DBAE45" Association="Self.FK__Order__CusPhone__47DBAE45">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Review__CusPhone__4F7CD00D" Association="Self.FK__Review__CusPhone__4F7CD00D">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProDetail_Discount" Association="Self.FK_ProDetail_Discount">
+            <End Role="Discount" EntitySet="Discounts" />
+            <End Role="ProDetail" EntitySet="ProDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__4BAC3F29" Association="Self.FK__OrderDeta__Order__4BAC3F29">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Review" Association="Self.FK_Order_Review">
+            <End Role="Review" EntitySet="Reviews" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__ProSu__4AB81AF0" Association="Self.FK__OrderDeta__ProSu__4AB81AF0">
+            <End Role="ProDetail" EntitySet="ProDetails" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pictures__ProID__52593CB8" Association="Self.FK__Pictures__ProID__52593CB8">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProDetail__ProID__403A8C7D" Association="Self.FK__ProDetail__ProID__403A8C7D">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProDetail" EntitySet="ProDetails" />
+          </AssociationSet>
+          <AssociationSet Name="PK_REVIEW_PRO" Association="Self.PK_REVIEW_PRO">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBTopZoneModelStoreContainer" CdmEntityContainer="DBTopZoneEntities">
+          <EntitySetMapping Name="AminUsers">
+            <EntityTypeMapping TypeName="DBTopZoneModel.AminUser">
+              <MappingFragment StoreEntitySet="AminUser">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameUser" ColumnName="NameUser" />
+                <ScalarProperty Name="RoleUser" ColumnName="RoleUser" />
+                <ScalarProperty Name="PasswordUser" ColumnName="PasswordUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Capacities">
+            <EntityTypeMapping TypeName="DBTopZoneModel.Capacity">
+              <MappingFragment StoreEntitySet="Capacity">
+                <ScalarProperty Name="CapacityID" ColumnName="CapacityID" />
+                <ScalarProperty Name="CapacityName" ColumnName="CapacityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="DBTopZoneModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CatID" ColumnName="CatID" />
+                <ScalarProperty Name="NameCate" ColumnName="NameCate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colors">
+            <EntityTypeMapping TypeName="DBTopZoneModel.Color">
+              <MappingFragment StoreEntitySet="Color">
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+                <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+                <ScalarProperty Name="RGB" ColumnName="RGB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="DBTopZoneModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CusPhone" ColumnName="CusPhone" />
+                <ScalarProperty Name="CusPassword" ColumnName="CusPassword" />
+                <ScalarProperty Name="CusFirstName" ColumnName="CusFirstName" />
+                <ScalarProperty Name="CusLastName" ColumnName="CusLastName" />
+                <ScalarProperty Name="CusSex" ColumnName="CusSex" />
+                <ScalarProperty Name="CusDate" ColumnName="CusDate" />
+                <ScalarProperty Name="CusEmail" ColumnName="CusEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discounts">
+            <EntityTypeMapping TypeName="DBTopZoneModel.Discount">
+              <MappingFragment StoreEntitySet="Discount">
+                <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
+                <ScalarProperty Name="DiscountCode" ColumnName="DiscountCode" />
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="DBTopZoneModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="CusPhone" ColumnName="CusPhone" />
+                <ScalarProperty Name="AddressDeliverry" ColumnName="AddressDeliverry" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="TotalValue" ColumnName="TotalValue" />
+                <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="DBTopZoneModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+                <ScalarProperty Name="ProSupID" ColumnName="ProSupID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pictures">
+            <EntityTypeMapping TypeName="DBTopZoneModel.Picture">
+              <MappingFragment StoreEntitySet="Pictures">
+                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="PictureName" ColumnName="PictureName" />
+                <ScalarProperty Name="PictureDescription" ColumnName="PictureDescription" />
+                <ScalarProperty Name="PictureData" ColumnName="PictureData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProDetails">
+            <EntityTypeMapping TypeName="DBTopZoneModel.ProDetail">
+              <MappingFragment StoreEntitySet="ProDetail">
+                <ScalarProperty Name="ProDeID" ColumnName="ProDeID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
+                <ScalarProperty Name="CapacityID" ColumnName="CapacityID" />
+                <ScalarProperty Name="RemainQuantity" ColumnName="RemainQuantity" />
+                <ScalarProperty Name="SoldQuantity" ColumnName="SoldQuantity" />
+                <ScalarProperty Name="ViewQuantity" ColumnName="ViewQuantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="DBTopZoneModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="ProName" ColumnName="ProName" />
+                <ScalarProperty Name="CatID" ColumnName="CatID" />
+                <ScalarProperty Name="ProImage" ColumnName="ProImage" />
+                <ScalarProperty Name="NameDecription" ColumnName="NameDecription" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="DBTopZoneModel.Review">
+              <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="Review_ID" ColumnName="Review_ID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="CusPhone" ColumnName="CusPhone" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
